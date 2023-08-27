@@ -20,13 +20,14 @@ import { obfuscator } from "rollup-obfuscator";
 // https://www.npmjs.com/package/rollup-plugin-dts
 import { dts } from "rollup-plugin-dts";
 import { obfusctorConfig } from "./obfusctorConfig.js";
+import { tsconfigDefaults } from "./tsconfigDefaults.js";
 
 export const getRollupConfig = (pkg) => {
   const isPro = process.env.mode === "pro";
 
   const rollConfig = [
     {
-      input: "src/index.js", // pack entry
+      input: "src/index.ts", // pack entry
       output: [
         {
           file: "dist/index.mjs", // ouput file
@@ -43,11 +44,12 @@ export const getRollupConfig = (pkg) => {
         commonjs(), // parse the module of commonjs specifications
         resolve(), // parse third-party lib, because rollup only can parse local module
         ts({
-          tsconfig: "./tsconfig.json", // specify tsconfig.json file, use to specify the packaging file range
+          // tsconfig: "./tsconfig.json", // specify tsconfig.json file, use to specify the packaging file range
+          tsconfigDefaults,
         }),
         ...(isPro ? [obfuscator(obfusctorConfig)] : []),
       ],
-      external: [...Object.keys(pkg.dependencies || {}), "child_process"],
+      external: [...Object.keys(pkg.dependencies || {})],
     },
     {
       input: "./dist/index.d.ts",
@@ -58,5 +60,3 @@ export const getRollupConfig = (pkg) => {
 
   return rollConfig;
 };
-
-console.log(getRollupConfig());

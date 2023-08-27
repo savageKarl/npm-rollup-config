@@ -20,7 +20,7 @@
   "license": "GPL-3.0",
   "homepage": "https://github.com/savage181855",
   "scripts": {
-    "dev": "cross-env mode=dev nodemon rollup.config.js",
+    "dev": "cross-env mode=dev rollup -c rollup.config.js -w",
     "build": "cross-env mode=pro rollup -c rollup.config.js",
     "publish": "npm run build && npm publish --access public"
   },
