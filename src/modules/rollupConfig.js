@@ -14,11 +14,15 @@ import resolve from "@rollup/plugin-node-resolve";
 // https://www.npmjs.com/package/@rollup/plugin-terser
 // import terser from '@rollup/plugin-terser';
 // used to obfuscate your code
-// https://www.npmjs.com/package/rollup-plugin-dts
+// https://www.npmjs.com/package/rollup-obfuscator
 import { obfuscator } from "rollup-obfuscator";
 // This is a plugin that lets you roll-up your .d.ts definition files.
 // https://www.npmjs.com/package/rollup-plugin-dts
 import { dts } from "rollup-plugin-dts";
+// https://www.npmjs.com/package/@rollup/plugin-json
+// Convert JSON files to ES Modules.
+import json from "@rollup/plugin-json";
+
 import { obfusctorConfig } from "./obfusctorConfig.js";
 import { tsconfigDefaults } from "./tsconfigDefaults.js";
 
@@ -44,9 +48,9 @@ export const getRollupConfig = (pkg) => {
         commonjs(), // parse the module of commonjs specifications
         resolve(), // parse third-party lib, because rollup only can parse local module
         ts({
-          // tsconfig: "./tsconfig.json", // specify tsconfig.json file, use to specify the packaging file range
           tsconfigDefaults,
         }),
+        json(),
         ...(isPro ? [obfuscator(obfusctorConfig)] : []),
       ],
       external: [...Object.keys(pkg.dependencies || {})],
