@@ -1,6 +1,6 @@
 {
   "name": "savage-rollup-config",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "rollup的打包配置，便于统一修改和更新",
   "main": "dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -22,7 +22,7 @@
   "scripts": {
     "dev": "cross-env mode=dev rollup -c rollup.config.js -w",
     "build": "cross-env mode=pro rollup -c rollup.config.js",
-    "publish": "npm run build && npm publish --access public"
+    "publish": "npm publish --access public"
   },
   "devDependencies": {
     "@rollup/plugin-json": "^6.0.0",
