@@ -23,6 +23,9 @@ import { dts } from "rollup-plugin-dts";
 // Convert JSON files to ES Modules.
 import json from "@rollup/plugin-json";
 
+// rollup command plugin,use to execute command for custom
+import { rollupCommand } from "savage-rollup-command";
+
 import { obfusctorConfig } from "./obfusctorConfig.js";
 import { tsconfigDefaults } from "./tsconfigDefaults.js";
 
@@ -51,6 +54,7 @@ export const getRollupConfig = (pkg) => {
           tsconfigDefaults,
         }),
         json(),
+        rollupCommand(),
         ...(isPro ? [obfuscator(obfusctorConfig)] : []),
       ],
       external: [...Object.keys(pkg.dependencies || {})],

@@ -1382,6 +1382,13 @@ savage-data-types@^1.0.7:
   resolved "https://registry.npmmirror.com/savage-data-types/-/savage-data-types-1.0.7.tgz#cfc9087c0536c9b4d5bfad03c8372cfb4fa54e77"
   integrity sha512-jT09QYi1fT2EA0bSwwgYrS9HBxxwHGgmeZ2NWAIBLRkCIKTXOlks/A5Tsha27Z72aNJHCMNTke4UqxOMJQZGxA==
 
+savage-rollup-command@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/savage-rollup-command/-/savage-rollup-command-0.0.1.tgz#4c90ef4fed19262abfdc2744ccea8b96044a8e96"
+  integrity sha512-UDDrnbwKD0i+uirTCgqv1keqqXQ9T4FBCMdmIrgfvTWpNnwrKMwc0NCoJHKkioytyCYq/VIKjHW7VkOkjqd9vg==
+  dependencies:
+    savage-data-types "^1.0.7"
+
 savage-utils@^1.0.45:
   version "1.0.45"
   resolved "https://registry.yarnpkg.com/savage-utils/-/savage-utils-1.0.45.tgz#7f6098483aa4326acb5080d10795c010c82cf3de"
