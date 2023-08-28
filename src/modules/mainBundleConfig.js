@@ -10,17 +10,22 @@ import { commonInputAndOutput } from "./commonInputAndOutput.js";
 import { commonExternal } from "./commonExternal.js";
 
 export const mainBundleConfig = (pkg) => {
+  const isPro = process.env.mode === "pro";
   return {
     ...commonInputAndOutput(),
     plugins: [
       rtp2({
         tsconfigDefaults,
       }),
-      rollupCommand({
-        buildEnd(run) {
-          run("cd example && yarn dev");
-        },
-      }),
+      ...(!isPro
+        ? [
+            rollupCommand({
+              buildEnd(run) {
+                run("cd example && yarn dev");
+              },
+            }),
+          ]
+        : []),
     ].concat(...commonPlugins()),
     ...commonExternal(pkg),
   };
