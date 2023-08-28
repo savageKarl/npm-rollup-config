@@ -13,7 +13,6 @@ export const mainBundleConfig = (pkg) => {
   return {
     ...commonInputAndOutput(),
     plugins: [
-      ...commonPlugins(),
       rtp2({
         tsconfigDefaults,
       }),
@@ -22,7 +21,7 @@ export const mainBundleConfig = (pkg) => {
           run("cd example && yarn dev");
         },
       }),
-    ],
+    ].concat(...commonPlugins()),
     ...commonExternal(pkg),
   };
 };

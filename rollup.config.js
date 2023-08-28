@@ -10,7 +10,7 @@ import { commonExternal } from "./src/modules/commonExternal.js";
 export default [
   {
     ...commonInputAndOutput(),
-    plugins: [typescript(tsconfigDefaults), commonPlugins()],
+    plugins: [typescript(tsconfigDefaults)].concat(...commonPlugins()),
     ...commonExternal(pkg, "child_process"),
   },
   dtsBundleConfig(),

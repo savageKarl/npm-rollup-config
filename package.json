@@ -1,6 +1,6 @@
 {
   "name": "savage-rollup-config",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "rollup的打包配置，便于统一修改和更新",
   "main": "dist/index.cjs",
   "module": "./dist/index.mjs",
