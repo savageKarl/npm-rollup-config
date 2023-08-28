@@ -13,7 +13,7 @@ export const mainBundleConfig = (pkg) => {
   return {
     ...commonInputAndOutput(),
     plugins: [
-      commonPlugins(),
+      ...commonPlugins(),
       rtp2({
         tsconfigDefaults,
       }),
