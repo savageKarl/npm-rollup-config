@@ -26,10 +26,10 @@ import json from "@rollup/plugin-json";
 // rollup command plugin,use to execute command for custom
 import { rollupCommand } from "savage-rollup-command";
 
-import { obfusctorConfig } from "./obfusctorConfig.js";
-import { tsconfigDefaults } from "./tsconfigDefaults.js";
+import { obfusctorConfig } from "./modules/obfusctorConfig.js";
+import { tsconfigDefaults } from "./modules/tsconfigDefaults.js";
 
-export const getRollupConfig = (pkg) => {
+export const getRollupConfig = (pkg: any) => {
   const isPro = process.env.mode === "pro";
 
   const rollConfig = [
@@ -54,14 +54,19 @@ export const getRollupConfig = (pkg) => {
           tsconfigDefaults,
         }),
         json(),
-        rollupCommand(),
-        ...(isPro ? [obfuscator(obfusctorConfig)] : []),
+        rollupCommand({
+          buildEnd(run) {
+            run("cd example && yarn dev");
+          },
+        }),
+        ...(isPro ? [obfuscator(obfusctorConfig as any)] : []),
       ],
       external: [...Object.keys(pkg.dependencies || {})],
     },
+    // 在rollup -w模式下使用这个插件，input和ouput不能一样，否则会报错，这是个bug，无法解决。
     {
       input: "./dist/index.d.ts",
-      output: [{ file: "dist/index.d.ts", format: "es" }],
+      output: [{ file: "dist/main.d.ts", format: "es" }],
       plugins: [dts()],
     },
   ];
