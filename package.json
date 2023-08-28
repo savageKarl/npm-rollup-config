@@ -7,7 +7,7 @@
   "files": [
     "dist/index.cjs",
     "dist/index.mjs",
-    "dist/index.d.ts",
+    "dist/main.d.ts",
     "dist/index.cjs.map",
     "dist/index.mjs.map"
   ],

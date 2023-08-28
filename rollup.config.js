@@ -16,9 +16,7 @@ import resolve from "@rollup/plugin-node-resolve";
 // used to obfuscate your code
 // https://www.npmjs.com/package/rollup-plugin-dts
 import { obfuscator } from "rollup-obfuscator";
-// This is a plugin that lets you roll-up your .d.ts definition files.
-// https://www.npmjs.com/package/rollup-plugin-dts
-import { dts } from "rollup-plugin-dts";
+
 import json from "@rollup/plugin-json";
 
 import pkg from "./package.json" assert { type: "json" };
@@ -27,7 +25,7 @@ import pkg from "./package.json" assert { type: "json" };
 import typescript from "@rollup/plugin-typescript";
 import { tsconfigDefaults } from "./src/modules/tsconfigDefaults.js";
 import { obfusctorConfig } from "./src/modules/obfusctorConfig.js";
-
+import { dtsBundleConfig } from "./src/modules/dtsBundleConfig.js";
 const isPro = process.env.mode === "pro";
 
 export default [
@@ -54,9 +52,5 @@ export default [
     ],
     external: [...Object.keys(pkg.dependencies || {}), "child_process"],
   },
-  {
-    input: "./dist/index.d.ts",
-    output: [{ file: "dist/main.d.ts", format: "es" }],
-    plugins: [dts()],
-  },
+  dtsBundleConfig(),
 ];
