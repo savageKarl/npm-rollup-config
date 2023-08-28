@@ -1,7 +1,7 @@
 import { RollupOptions } from "rollup";
 
-import { mainBundleConfig } from "./modules/mainBundleConfig.js";
-import { dtsBundleConfig } from "./modules/dtsBundleConfig.js";
+import { mainBundleConfig } from "./mainBundleConfig.js";
+import { dtsBundleConfig } from "./dtsBundleConfig.js";
 
 export const getRollupConfig = (
   /** package.json file */

@@ -20,6 +20,6 @@ export const tsconfigDefaults = {
     lib: ["esnext", "dom"], // 导入库类型定义
   },
   include: [
-    "./src/*", // 导入目录
+    "./src/**/*.ts", // 导入目录
   ],
 };
